@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="12.796844">
+<testcase classname="login user" name="Log in test" time="7.637158">
+<system-out><![CDATA[Given open browser at page google.ru........................................passed
+When push buttom login enter "ananabramov"..................................passed
+And enter "p5vsp8gvA".......................................................passed
+Then enter google "ok"......................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="login user" name="Log in test 2" time="5.159686">
+<system-out><![CDATA[Given open browser at page google.ru........................................passed
+When push buttom login enter "cubman".......................................passed
+And enter "rdffgdf".........................................................passed
+Then enter google "wrong"...................................................passed
+]]></system-out>
+</testcase>
+</testsuite>
