@@ -11,4 +11,5 @@ Feature: SendMmessage
 
     Examples:
       | user email                 | symbols                      |  message    |
-      | tolik.abramoff@yandex.ru   | K71 K72 K66 K70 K84 K78      | Hello world |
+      | tolik.abramoff@yandex.ru   | K71 K72 K66 K68 K84 K78      | Hello world |
+      | googleelgoog@ m            | K71 K72 K66 K68 K84 K78      | Hello world |

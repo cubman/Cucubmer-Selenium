@@ -1,11 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="11.528188">
-<testcase classname="SendMmessage" name="Send" time="11.528188">
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="37.428849">
+<testcase classname="SendMmessage" name="Send" time="20.765196">
 <system-out><![CDATA[Given open browser at page gmail............................................passed
 When push buttom write and keyboard.........................................passed
 Then enter user "tolik.abramoff@yandex.ru"..................................passed
-And enter message subject "K71 K72 K66 K70 K84 K78".........................passed
+And enter message subject "K71 K72 K66 K68 K84 K78".........................passed
 And enter message text "Hello world"........................................passed
 Then closed window..........................................................passed
 ]]></system-out>
+</testcase>
+<testcase classname="SendMmessage" name="Send_2" time="16.663653">
+<failure message="java.lang.Exception: window was  not closed&#10;&#9;at step.MessageSending.closed_window(MessageSending.java:116)&#10;&#9;at ✽.Then closed window(features/SendMessage.feature:8)&#10;"><![CDATA[Given open browser at page gmail............................................passed
+When push buttom write and keyboard.........................................passed
+Then enter user "googleelgoog@ m"...........................................passed
+And enter message subject "K71 K72 K66 K68 K84 K78".........................passed
+And enter message text "Hello world"........................................passed
+Then closed window..........................................................failed
+
+StackTrace:
+java.lang.Exception: window was  not closed
+	at step.MessageSending.closed_window(MessageSending.java:116)
+	at ✽.Then closed window(features/SendMessage.feature:8)
+]]></failure>
 </testcase>
 </testsuite>

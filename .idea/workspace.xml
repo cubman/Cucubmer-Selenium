@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b3cd8f0-60ba-4825-82e1-53467454d642" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/SendMessage.feature" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/run/Send.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/step/MessageSending.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/run/Enter.java" afterPath="$PROJECT_DIR$/src/test/java/run/Enter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/SendMessage.feature" afterPath="$PROJECT_DIR$/features/SendMessage.feature" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/step/MessageSending.java" afterPath="$PROJECT_DIR$/src/test/java/step/MessageSending.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -51,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/features/SendMessage.feature">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="13" column="66" lean-forward="false" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
+              <caret line="13" column="81" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -60,8 +56,8 @@
       <file leaf-file-name="MessageSending.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/step/MessageSending.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="61" column="87" lean-forward="false" selection-start-line="61" selection-start-column="87" selection-end-line="61" selection-end-column="87" />
+            <state relative-caret-position="1306">
+              <caret line="113" column="29" lean-forward="true" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -118,10 +114,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
-    <option name="y" value="-11" />
-    <option name="width" value="1602" />
-    <option name="height" value="912" />
+    <option name="y" value="-4" />
+    <option name="width" value="1600" />
+    <option name="height" value="904" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -147,20 +142,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="comcucumbertesting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comcucumbertesting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="comcucumbertesting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -550,39 +531,39 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Send - 2017.05.23 at 11h 12m 12s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 23m 42s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 13m 28s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 26m 18s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 15m 41s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 27m 55s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 16m 29s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 30m 18s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 17m 23s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 32m 36s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 18m 19s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 33m 39s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 25m 18s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 38m 36s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 26m 09s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 39m 57s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 28m 52s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 41m 51s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Send - 2017.05.23 at 11h 32m 34s.xml">
+    <history-entry file="Send - 2017.05.23 at 14h 45m 14s.xml">
       <configuration name="Send" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-11" width="1602" height="912" extended-state="7" />
+    <frame x="0" y="-4" width="1600" height="904" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -595,7 +576,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3008739" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26966292" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -606,7 +587,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39975095" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39950064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -835,14 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/features/SendMessage.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="66" lean-forward="false" selection-start-line="13" selection-start-column="66" selection-end-line="13" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/sending.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -859,10 +832,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/features/SendMessage.feature">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="81" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/step/MessageSending.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="61" column="87" lean-forward="false" selection-start-line="61" selection-start-column="87" selection-end-line="61" selection-end-column="87" />
+        <state relative-caret-position="1306">
+          <caret line="113" column="29" lean-forward="true" selection-start-line="113" selection-start-column="29" selection-end-line="113" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
