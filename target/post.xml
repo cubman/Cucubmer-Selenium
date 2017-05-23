@@ -1,8 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="33.388296">
-<testcase classname="Post sort" name="post sorting" time="33.388296">
-<system-out><![CDATA[Given loggined user and at page inbox.......................................passed
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="41.817554">
+<testcase classname="Post sort" name="post sorting" time="41.817554">
+<failure message="org.openqa.selenium.WebDriverException: unknown error: Element is not clickable at point (596, 22). Other element would receive the click: &lt;input class=&quot;gc sp g-lW qW g-lW-k1&quot; aria-label=&quot;Поиск&quot; placeholder=&quot;Поиск&quot; aria-autocomplete=&quot;both&quot; aria-haspopup=&quot;true&quot; role=&quot;combobox&quot; spellcheck=&quot;false&quot; type=&quot;text&quot; jsaction=&quot;global.none&quot; jsan=&quot;7.gc,7.sp,7.qW,0.aria-label,0.placeholder,0.aria-autocomplete,0.aria-haspopup,0.role,0.spellcheck,0.type,22.jsaction&quot; jstcache=&quot;1027&quot; tabindex=&quot;0&quot; dir=&quot;ltr&quot;&gt;&#10;  (Session info: chrome=53.0.2785.116)&#10;  (Driver info: chromedriver=2.8.240825,platform=Linux 4.4.0-77-generic x86_64) (WARNING: The server did not provide any stacktrace information)&#10;Command duration or timeout: 36 milliseconds&#10;Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'&#10;System info: host: 'anatoly-pc', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.4.0-77-generic', java.version: '1.8.0_131'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=/tmp/.org.chromium.Chromium.pbRmz8}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=53.0.2785.116, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]&#10;Session ID: f14d1f6692fc650e24d2d8e3f2756e65&#10;&#9;at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#10;&#9;at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)&#10;&#9;at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)&#10;&#9;at java.lang.reflect.Constructor.newInstance(Constructor.java:423)&#10;&#9;at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)&#10;&#9;at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)&#10;&#9;at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)&#10;&#9;at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)&#10;&#9;at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)&#10;&#9;at step.PostSort.check_is_sorted(PostSort.java:102)&#10;&#9;at ✽.Then check is sorted(features/Post.feature:5)&#10;"><![CDATA[Given loggined user and at page inbox.......................................passed
 When sorted by date desc....................................................passed
-Then check is sorted........................................................passed
-]]></system-out>
+Then check is sorted........................................................failed
+
+StackTrace:
+org.openqa.selenium.WebDriverException: unknown error: Element is not clickable at point (596, 22). Other element would receive the click: <input class="gc sp g-lW qW g-lW-k1" aria-label="Поиск" placeholder="Поиск" aria-autocomplete="both" aria-haspopup="true" role="combobox" spellcheck="false" type="text" jsaction="global.none" jsan="7.gc,7.sp,7.qW,0.aria-label,0.placeholder,0.aria-autocomplete,0.aria-haspopup,0.role,0.spellcheck,0.type,22.jsaction" jstcache="1027" tabindex="0" dir="ltr">
+  (Session info: chrome=53.0.2785.116)
+  (Driver info: chromedriver=2.8.240825,platform=Linux 4.4.0-77-generic x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 36 milliseconds
+Build info: version: '3.4.0', revision: 'unknown', time: 'unknown'
+System info: host: 'anatoly-pc', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.4.0-77-generic', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, chrome={userDataDir=/tmp/.org.chromium.Chromium.pbRmz8}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, version=53.0.2785.116, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: f14d1f6692fc650e24d2d8e3f2756e65
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:215)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:167)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:671)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:272)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:82)
+	at step.PostSort.check_is_sorted(PostSort.java:102)
+	at ✽.Then check is sorted(features/Post.feature:5)
+]]></failure>
 </testcase>
 </testsuite>
