@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="37.428849">
-<testcase classname="SendMmessage" name="Send" time="20.765196">
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="48.253869">
+<testcase classname="SendMmessage" name="Send" time="27.546062">
 <system-out><![CDATA[Given open browser at page gmail............................................passed
 When push buttom write and keyboard.........................................passed
 Then enter user "tolik.abramoff@yandex.ru"..................................passed
@@ -8,8 +8,8 @@ And enter message text "Hello world"........................................pass
 Then closed window..........................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="SendMmessage" name="Send_2" time="16.663653">
-<failure message="java.lang.Exception: window was  not closed&#10;&#9;at step.MessageSending.closed_window(MessageSending.java:116)&#10;&#9;at ✽.Then closed window(features/SendMessage.feature:8)&#10;"><![CDATA[Given open browser at page gmail............................................passed
+<testcase classname="SendMmessage" name="Send_2" time="20.707807">
+<failure message="java.lang.Exception: window was  not closed&#10;&#9;at step.MessageSending.closed_window(MessageSending.java:115)&#10;&#9;at ✽.Then closed window(features/SendMessage.feature:8)&#10;"><![CDATA[Given open browser at page gmail............................................passed
 When push buttom write and keyboard.........................................passed
 Then enter user "googleelgoog@ m"...........................................passed
 And enter message subject "K71 K72 K66 K68 K84 K78".........................passed
@@ -18,7 +18,7 @@ Then closed window..........................................................fail
 
 StackTrace:
 java.lang.Exception: window was  not closed
-	at step.MessageSending.closed_window(MessageSending.java:116)
+	at step.MessageSending.closed_window(MessageSending.java:115)
 	at ✽.Then closed window(features/SendMessage.feature:8)
 ]]></failure>
 </testcase>

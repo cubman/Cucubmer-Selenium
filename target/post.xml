@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="33.388296">
+<testcase classname="Post sort" name="post sorting" time="33.388296">
+<system-out><![CDATA[Given loggined user and at page inbox.......................................passed
+When sorted by date desc....................................................passed
+Then check is sorted........................................................passed
+]]></system-out>
+</testcase>
+</testsuite>

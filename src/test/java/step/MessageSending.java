@@ -46,14 +46,13 @@ public class MessageSending {
         wdw.until(presenceOfElementLocated(By.name("password"))).sendKeys("p5vsp8gvA");
         dr.findElement(By.id("passwordNext")).click();
 
-
+        dr.get("https://mail.google.com/");
+        dr.get("https://mail.google.com/");
+        dr.get("https://mail.google.com/");
     }
 
     @When("^push buttom write and keyboard$")
     public void push_buttom_write_and_keyboard() throws Throwable {
-        dr.get("https://mail.google.com/");
-        dr.get("https://mail.google.com/");
-        dr.get("https://mail.google.com/");
 
         wdw.until(presenceOfElementLocated(By.className("aic"))).click();
         wdw.until(presenceOfElementLocated(By.className("AD")));
