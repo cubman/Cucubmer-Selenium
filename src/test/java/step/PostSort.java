@@ -3,21 +3,20 @@ package step;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.bind.Element;
 import java.sql.Time;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -28,6 +27,7 @@ public class PostSort {
 
     public static WebDriver dr;
     public static WebDriverWait wdw;
+    private String mainLink = "";
 
     public PostSort() {
         System.setProperty("webdriver.chrome.driver", "/home/anatoly/IdeaProjects/comcucumbertesting/chromedriver");
@@ -50,8 +50,6 @@ public class PostSort {
 
         dr.navigate().to("https://www.google.ru/inbox/");
         wdw.until(presenceOfElementLocated(By.className("learn-more-btn"))).click();
-        /*dr.get("https://www.google.ru/inbox/");
-        dr.get("https://www.google.ru/inbox/");*/
     }
 
     @When("^sorted by date desc$")
@@ -59,48 +57,106 @@ public class PostSort {
         wdw.until(presenceOfElementLocated(By.cssSelector(".te, .Nm, .qz")));
         dr.findElement(By.className("k5")).click();
 
-        dr.findElement(By.cssSelector(".gc, .sp, .g-lW, .qW")).sendKeys(String.format("after:%s before:%s", new SimpleDateFormat("yyyy/MM/dd").format(new Date(0)),  new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime())));
+        wdw.until(presenceOfElementLocated(By.cssSelector(".gc, .sp, .g-lW, .qW"))).
+                sendKeys(String.format("after:%s before:%s",
+                        new SimpleDateFormat("yyyy/MM/dd").format(new Date(0)),
+                        new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime())));
+
         wdw.until(presenceOfElementLocated(By.className("rj"))).click();
+    }
+
+
+    private List<WebElement> getMessages(JavascriptExecutor js, int amountOfScrolling ) throws InterruptedException {
+        List<WebElement> ls = new LinkedList<WebElement>();
+        for (int i = 0; i <= amountOfScrolling; ++i) {
+
+            if (i == amountOfScrolling)
+                ls = dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).
+                        findElements(By.className("DsPmj")).get(1).
+                        findElement(By.cssSelector(".ai-cA, .scroll-list-section-body")).
+                       // findElements(By.cssSelector(".an, .b9"));
+                        findElements(By.cssSelector(".scroll-list-item, .top-level-item"));
+
+            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            Thread.sleep(1000);
+        }
+        return  ls;
+    }
+
+    private String getFirstLink(JavascriptExecutor js, WebElement we) {
+
+        js.executeScript("arguments[0].scrollIntoView(true);", dr.findElement(By.className("ai-b8")));
+        wdw.until(ExpectedConditions.elementToBeClickable(we));
+        we.click();
+
+        return "https://mail.google.com/mail/u/0/?ik=9a3ca749ae&view=om&permmsgid=msg-f:1568184822149037543";
+    }
+
+    private void initMainLink(String link) {
+        mainLink = link.split("msg-f:")[0];
+    }
+
+    private String getLink(String msgId) {
+        return mainLink + "msg-f:" + msgId; //msgId.split("msg-f:")[1];
+    }
+
+    private String getMsgId(WebElement we) {
+        return we.getAttribute("data-msg-id").split("msg-f:")[1];
+    }
+
+    private Date getDateCreation(WebElement we) throws ParseException {
+        dr.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL +"t");
+
+        String mId = getMsgId(we);
+        System.out.print(mId);
+        ArrayList<String> tabs = new ArrayList<String> (dr.getWindowHandles());
+        dr.switchTo().window(tabs.get(1));
+
+        dr.get(getLink(mId));
+
+        wdw.until(ExpectedConditions.presenceOfElementLocated(By.className("raw_message_text")));
+        String [] str = dr.findElement(By.className("raw_message_text")).getText().split("\n");
+
+        dr.close();
+        dr.switchTo().window(tabs.get(0));
+
+        return new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z", Locale.ENGLISH).parse(str[2].substring(6));
     }
 
     @Then("^check is sorted$")
     public void check_is_sorted() throws Throwable {
-
-       // System.out.print(dr.findElements(By.className("DsPmj")).size());
-
-//Identify the WebElement which will appear after scrolling down
-
         JavascriptExecutor js = ((JavascriptExecutor) dr);
 
-        int max = 3;
+        List<WebElement> messages = getMessages(js, 3);
 
-        List<WebElement> ls = new LinkedList<WebElement>();
-        for (int i = 0; i <= max; ++i) {
+        System.out.print(messages.size());
+        System.out.print("\n\n");
 
-            if (i == max) {
-               // wdw.until(ExpectedConditions.visibilityOf( dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).findElement(By.className("DsPmj"))));
-                ls = dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).findElements(By.className("DsPmj")).get(1).findElement(By.cssSelector(".ai-cA, .scroll-list-section-body")).findElements(By.cssSelector(".scroll-list-item, .top-level-item"));
-
-            }
-            //System.out.print(dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).findElements(By.className("DsPmj")).size());
-
-            // System.out.print(dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).findElements(By.className("DsPmj")).size());
-
-            //   List<WebElement> lwe = dr.findElement(By.cssSelector(".yDSKFc, .viy5Tb")).findElement(By.cssSelector(".ai-cA, .scroll-list-section-body"))
-            //  System.out.print(lwe);
-            js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-            Thread.sleep(1000);
-        }
-
-        if (ls.size() == 0)
+        if (messages.size() == 0)
             return;
 
+        String getLink = getFirstLink(js, messages.get(0));
+        initMainLink(getLink);
 
-// now execute query which actually will scroll until that element is not appeared on page.
+        for (int i= 0; i < 1; ++i) {
+            //System.out.print(i);
+            /*js.executeScript("window.scrollTo(0," + messages.get(i).getLocation().y + ")");
+            wdw.until(ExpectedConditions.elementToBeClickable(messages.get(i)));
+            messages.get(i).click();*/
 
-        js.executeScript("arguments[0].scrollIntoView(true);",ls.get(0));
-        ls.get(0).click();
-        ls.get(0).findElement(By.cssSelector(".pA, .s2")).click();
+            List<WebElement> lew = messages.get(i).findElements(By.xpath("*")).
+                    get(2).findElements(By.xpath("*")).
+                    get(4).findElements(By.xpath("*")).get(0)
+                    .findElements(By.xpath("*"));
+
+            //head.click();
+
+            System.out.print(getDateCreation(lew.get(0)));
+        }
+            // dr.navigate().to(getLink(getLink));
+
+           // System.out.print(lew.get(0).getText());
+        dr.quit();
     }
 
 }
