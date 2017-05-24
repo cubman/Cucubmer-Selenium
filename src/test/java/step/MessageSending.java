@@ -37,84 +37,92 @@ public class MessageSending {
 
     @Given("^open browser at page gmail$")
     public void open_browser_at_page_gmail() throws Throwable {
+        // открытие страницы google.ru
         dr.get("https://google.ru");
-        dr.findElement(By.id("gb_70")).click();
+        // нажатие кнопки "Войти"
+        wdw.until(ExpectedConditions.elementToBeClickable(By.id("gb_70"))).click();
 
+        // Ввод имени пользователя
         wdw.until(presenceOfElementLocated(By.id("identifierId"))).sendKeys("ananabramov");
-        dr.findElement(By.id("identifierNext")).click();
+        // нажатие кнопки "продолжить"
+        wdw.until(ExpectedConditions.elementToBeClickable(By.id("identifierNext"))).click();
 
+        // ввод пароля
         wdw.until(presenceOfElementLocated(By.name("password"))).sendKeys("p5vsp8gvA");
-        dr.findElement(By.id("passwordNext")).click();
+        // нажатие кнопки "продолжить"
+        wdw.until(ExpectedConditions.elementToBeClickable(By.id("passwordNext"))).click();
 
-        dr.get("https://mail.google.com/");
-        dr.get("https://mail.google.com/");
-        dr.get("https://mail.google.com/");
+        // ожидание загрузки значка вошедшего пользователя
+        wdw.until(presenceOfElementLocated(By.cssSelector(".gb_Cc, .gb_hb, .gb_dg, .gb_R")));
+
+        // переход на страницу сообщений
+        dr.navigate().to("https://mail.google.com/");
     }
 
     @When("^push buttom write and keyboard$")
     public void push_buttom_write_and_keyboard() throws Throwable {
-
-        wdw.until(presenceOfElementLocated(By.className("aic"))).click();
-        wdw.until(presenceOfElementLocated(By.className("AD")));
-
-
-        /*MenuItem menu = new div(dr.findElement(By.id("itamenu")));
-        menu.selectByVisibleText("Русская клавиатура");*/
-
-       // dr.findElement().click();
+        wdw.until(presenceOfElementLocated(By.className("aic"))).click(); // нажать "Написать"
+        wdw.until(presenceOfElementLocated(By.className("AD"))); // дождаться кнопки с клавиатурой
     }
 
     @Then("^enter user \"([^\"]*)\"$")
     public void enter_user(String arg1) throws Throwable {
-        WebElement el = dr.findElement(By.name("to"));
+        WebElement el = dr.findElement(By.name("to")); // активировать поле с вводом имени
         el.click();
-        el.sendKeys(arg1);
+        el.sendKeys(arg1); // переслать имя
     }
 
     @Then("^enter message subject \"([^\"]*)\"$")
     public void enter_message_subject(String arg1) throws Throwable {
-        wdw.until(presenceOfElementLocated(By.id("itamenu"))).findElements(By.cssSelector(".d-Na-JX-I, .d-Na-JG, .d-Na-IF")).get(1).click();
-        dr.findElements(By.className("d-Na-N-M7-awE")).get(1).click();
-        wdw.until(presenceOfElementLocated(By.className("RK-QJ")));
+        wdw.until(presenceOfElementLocated(By.id("itamenu"))).
+                findElements(By.cssSelector(".d-Na-JX-I, .d-Na-JG, .d-Na-IF")).get(1).click(); // нажать кнопку со значком клавиатуры
+        dr.findElements(By.className("d-Na-N-M7-awE")).get(1).click(); // русская раскладка
+        wdw.until(presenceOfElementLocated(By.className("RK-QJ"))); // дождаться клавиатуры
 
-        WebElement el = dr.findElement(By.name("subjectbox"));
-        el.click();
-        String res_str = "";
+        WebElement el = dr.findElement(By.name("subjectbox")); // тема сообщения
+        el.click(); // активировать поле
+        String res_str = ""; // результат сообщения по кодам
 
-        for (String x: arg1.split(" ")) {
+        // написание сообщения
+        for (String x: arg1.split(" "))
             res_str += dr.findElement(By.id(x)).findElement(By.cssSelector(".RK-Mo")).getText();
-        }
+
+        // передать текст
         el.sendKeys(res_str);
     }
 
     @Then("^enter message text \"([^\"]*)\"$")
     public void enter_message_text(String arg1) throws Throwable {
-        dr.findElement(By.cssSelector(".RK-QJ-Jk-Pl, .RK-Qq-Mq")).click();
-        wdw.until(presenceOfElementLocated(By.id("itamenu"))).findElements(By.cssSelector(".d-Na-JX-I, .d-Na-JG, .d-Na-IF")).get(1).click();
-        dr.findElements(By.className("d-Na-N-M7-awE")).get(2).click();
-        wdw.until(presenceOfElementLocated(By.className("RK-QJ")));
+        dr.findElement(By.cssSelector(".RK-QJ-Jk-Pl, .RK-Qq-Mq")).click(); // закрыть клавиатуру
+        wdw.until(presenceOfElementLocated(By.id("itamenu"))).
+                findElements(By.cssSelector(".d-Na-JX-I, .d-Na-JG, .d-Na-IF")).
+                get(1).click(); // активировать клавиатуру с английским языком
+        dr.findElements(By.className("d-Na-N-M7-awE")).get(2).click(); // английская раскладка
+        wdw.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("RK-QJ")));
 
+        // нажать на текст сообщения
         WebElement el = dr.findElement(By.cssSelector(".Am, .Al, .editable, .LW-avf"));
         el.click();
-        el.sendKeys(arg1);
+        el.sendKeys(arg1); // ввести текст
     }
 
     @Then("^closed window$")
     public void closed_window() throws Throwable {
-       // dr.findElement(By.cssSelector(".RK-QJ-Jk-Pl, .RK-Qq-Mq")).click();
+       // нажать кнопку отправить
         dr.findElement(By.cssSelector(".gU, .Up")).click();
         try {
+            // если окно ошибки появилось
             wdw.until(presenceOfElementLocated(By.className("Kj-JD-Jl")));
-            throw new Exception();
+            throw new Exception(); // послать ошибку
 
-        } catch (TimeoutException e) {
+        } catch (TimeoutException e) { // вышли из-за того, что не вывелось окно, значит все хорошо
 
         }
         catch (Exception e) {
-            dr.quit();
-            throw new Exception("window was  not closed");
+            dr.quit();// закрыть браузер
+            throw new Exception("window was  not closed"); // сообщить об ошибке
         }
-        dr.quit();
+        dr.quit(); // закрыть браузер
     }
 
 }
