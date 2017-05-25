@@ -98,10 +98,9 @@ public class MessageSending {
                 findElements(By.cssSelector(".d-Na-JX-I, .d-Na-JG, .d-Na-IF")).
                 get(1).click(); // активировать клавиатуру с английским языком
         dr.findElements(By.className("d-Na-N-M7-awE")).get(2).click(); // английская раскладка
-        wdw.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.className("RK-QJ")));
 
         // нажать на текст сообщения
-        WebElement el = dr.findElement(By.cssSelector(".Am, .Al, .editable, .LW-avf"));
+        WebElement el = dr.findElement(By.cssSelector(".Am, .Al"));
         el.click();
         el.sendKeys(arg1); // ввести текст
     }

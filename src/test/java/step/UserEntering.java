@@ -42,18 +42,13 @@ public class UserEntering {
         dr.get("https://google.ru");
         // нажатие кнопки "Войти"
         wdw.until(ExpectedConditions.elementToBeClickable(By.id("gb_70"))).click();
-
-
-        dr.get("https://google.ru");
-
-        dr.findElement(By.id("gb_70")).click();
     }
 
     @When("^push buttom login enter \"([^\"]*)\"$")
     public void push_buttom_login_enter(String arg1) throws Throwable {
 
         // Ввод имени пользователя
-        wdw.until(presenceOfElementLocated(By.id("identifierId"))).sendKeys("ananabramov");
+        wdw.until(presenceOfElementLocated(By.id("identifierId"))).sendKeys(arg1);
         // нажатие кнопки "продолжить"
         wdw.until(ExpectedConditions.elementToBeClickable(By.id("identifierNext"))).click();
 
@@ -63,7 +58,7 @@ public class UserEntering {
     public void enter(String arg1) throws Throwable {
 
         // ввод пароля
-        wdw.until(presenceOfElementLocated(By.name("password"))).sendKeys("p5vsp8gvA");
+        wdw.until(presenceOfElementLocated(By.name("password"))).sendKeys(arg1);
         // нажатие кнопки "продолжить"
         wdw.until(ExpectedConditions.elementToBeClickable(By.id("passwordNext"))).click();
     }

@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="15.884579">
-<testcase classname="login user" name="Log in test" time="7.092746">
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="2" time="21.881244">
+<testcase classname="login user" name="Log in test" time="8.726955">
 <system-out><![CDATA[Given open browser at page google.ru........................................passed
 When push buttom login enter "ananabramov"..................................passed
 And enter "p5vsp8gvA".......................................................passed
 Then enter google "ok"......................................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="login user" name="Log in test 2" time="8.791833">
-<failure message="java.lang.Exception: user was not passed&#10;&#9;at step.UserEntering.enter_google(UserEntering.java:72)&#10;&#9;at ✽.Then enter google &quot;wrong&quot;(features/Enter.feature:6)&#10;"><![CDATA[Given open browser at page google.ru........................................passed
+<testcase classname="login user" name="Log in test 2" time="13.154289">
+<failure message="java.lang.Exception: user was not passed&#10;&#9;at step.UserEntering.enter_google(UserEntering.java:73)&#10;&#9;at ✽.Then enter google &quot;wrong&quot;(features/Enter.feature:6)&#10;"><![CDATA[Given open browser at page google.ru........................................passed
 When push buttom login enter "cubman".......................................passed
 And enter "rdffgdf".........................................................passed
 Then enter google "wrong"...................................................failed
 
 StackTrace:
 java.lang.Exception: user was not passed
-	at step.UserEntering.enter_google(UserEntering.java:72)
+	at step.UserEntering.enter_google(UserEntering.java:73)
 	at ✽.Then enter google "wrong"(features/Enter.feature:6)
 ]]></failure>
 </testcase>

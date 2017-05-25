@@ -1,10 +1,12 @@
 package step;
 
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import gherkin.lexer.Da;
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import org.jetbrains.annotations.Nullable;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.CapabilityType;
@@ -75,8 +77,8 @@ public class PostSort {
         wdw.until(presenceOfElementLocated(By.className("k5"))).click();
 
         // внесение результата поиска after: .. before: ..
-        wdw.until(presenceOfElementLocated(By.cssSelector(".gc, .sp, .g-lW, .qW"))).
-                sendKeys(String.format("after:%s before:%s",
+        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gc, .sp, .g-lW, .qW"))).
+                sendKeys(String.format("date-begin:%s date-end:%s",
                         new SimpleDateFormat("yyyy/MM/dd").format(new Date(0)),
                         new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime())));
 
@@ -102,11 +104,14 @@ public class PostSort {
     }
 
     // возвращениессылки на даннные сообщения
+    @org.jetbrains.annotations.NotNull
+    @org.jetbrains.annotations.Contract(pure = true)
     private String getLink(String msgId) {
         return mainLink + msgId;
     }
 
     // получение идентификатора сообщения
+    @Nullable
     private String getMsgId(WebElement we) {
         String atr = we.getAttribute("data-msg-id");
         if (atr.contains("msg-f:"))
@@ -155,6 +160,17 @@ public class PostSort {
         return d; // вернуть дату создания
     }
 
+    private List<WebElement> getListOfMessageInOneBlock(WebElement webElement) {
+       return webElement.findElements(By.xpath("*")).
+                get(2).findElements(By.xpath("*")).
+                get(4).findElements(By.xpath("*")).get(0)
+                .findElements(By.xpath("*")); // список сообщений
+    }
+
+    private void scrollTo(JavascriptExecutor js, WebElement webElement) {
+        js.executeScript("window.scrollTo(0," + (webElement.getLocation().y - 100) + ")");
+    }
+
     @Then("^check is sorted$")
     public void check_is_sorted() throws Throwable {
         JavascriptExecutor js = ((JavascriptExecutor) dr); // для прокрутки
@@ -166,29 +182,38 @@ public class PostSort {
 
         Date prev = new Date(Calendar.getInstance().getTimeInMillis()); // начальная дата, самая большая
         for (int i= 0; i < messages.size(); ++i) {
-            System.out.print(i + " - ");
-
-            js.executeScript("window.scrollTo(0," + (messages.get(i).getLocation().y - 100) + ")"); // прокрутить до сообщения
+            scrollTo(js, messages.get(i)); // прокрутить до сообщения
             wdw.until(ExpectedConditions.visibilityOf(messages.get(i)));
             wdw.until(ExpectedConditions.elementToBeClickable(messages.get(i)));
             messages.get(i).findElement(By.className("jS")).click(); // нажать на сообщения
 
+            wdw.until(ExpectedConditions.visibilityOf(messages.get(i).findElements(By.xpath("*")).
+                    get(2)));
+            List<WebElement> lew = getListOfMessageInOneBlock(messages.get(i)); // список открытых сообщений
 
-            List<WebElement> lew = messages.get(i).findElements(By.xpath("*")).
-                    get(2).findElements(By.xpath("*")).
-                    get(4).findElements(By.xpath("*")).get(0)
-                    .findElements(By.xpath("*")); // список сообщений
+            // если есть поле со свернутыми сообщениями
+            if (lew.size() > 1 && lew.get(1).getAttribute("class").equals("ap s2 jY")) {
+                scrollTo(js, lew.get(1));  // переместиться к нему
+                lew.get(1).click(); // нажать
+                lew = getListOfMessageInOneBlock(messages.get(i)); // обновитьсписок сообщений в теме
+            }
 
-            wdw.until(ExpectedConditions.visibilityOf(lew.get(0)));
-            Date cur_el = getDateCreation(lew.get(0)); // дата создания сообщения
-            System.out.print(cur_el);
+            // для каждого сообщения, объединеных темой
+            for (int j = 0; j < lew.size(); ++j) {
+                System.out.print(i + " - " + j + " - ");
+                scrollTo(js, lew.get(j)); /// прокрутить к сообщению
 
-            if (cur_el.getTime() > prev.getTime()) // дата пред. сообщения больше текущей
-                throw new Exception(cur_el + " more " + prev);
+                wdw.until(ExpectedConditions.visibilityOf(lew.get(j))); // пока не будет видно
+                Date cur_el = getDateCreation(lew.get(j)); // дата создания сообщения
+                System.out.print(cur_el);
 
-            prev = cur_el;
+                if (cur_el.getTime() > prev.getTime()) // дата пред. сообщения больше текущей
+                    throw new Exception(cur_el + " more " + prev);
 
-            System.out.print("\n");
+                prev = cur_el;
+
+                System.out.print("\n");
+            }
         }
 
         //dr.quit();

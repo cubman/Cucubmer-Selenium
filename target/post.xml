@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="32.167787">
-<testcase classname="Post sort" name="post sorting" time="32.167787">
-<failure message="java.lang.Exception: Tue May 23 15:20:38 MSK 2017 more Tue May 23 14:06:28 MSK 2017&#10;&#9;at step.PostSort.check_is_sorted(PostSort.java:170)&#10;&#9;at ✽.Then check is sorted(features/Post.feature:5)&#10;"><![CDATA[Given loggined user and at page inbox: ananabramov,p5vsp8gvA,https://mail.google.com/mail/u/0/?ik=9a3ca749ae&view=om&permmsgid=msg-f:.passed
+<?xml version="1.0" encoding="UTF-8"?><testsuite failures="1" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="27.433911">
+<testcase classname="Post sort" name="post sorting" time="27.433911">
+<failure message="java.lang.Exception: Tue May 23 14:09:12 MSK 2017 more Tue May 23 14:06:28 MSK 2017&#10;&#9;at step.PostSort.check_is_sorted(PostSort.java:211)&#10;&#9;at ✽.Then check is sorted(features/Post.feature:5)&#10;"><![CDATA[Given loggined user and at page inbox: ananabramov,p5vsp8gvA,https://mail.google.com/mail/u/0/?ik=9a3ca749ae&view=om&permmsgid=msg-f:.passed
 When sorted by date desc....................................................passed
 Then check is sorted........................................................failed
 
 StackTrace:
-java.lang.Exception: Tue May 23 15:20:38 MSK 2017 more Tue May 23 14:06:28 MSK 2017
-	at step.PostSort.check_is_sorted(PostSort.java:170)
+java.lang.Exception: Tue May 23 14:09:12 MSK 2017 more Tue May 23 14:06:28 MSK 2017
+	at step.PostSort.check_is_sorted(PostSort.java:211)
 	at ✽.Then check is sorted(features/Post.feature:5)
 ]]></failure>
 </testcase>
