@@ -1,26 +1,22 @@
 package step;
 
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import gherkin.lexer.Da;
-import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import junit.framework.TestCase;
 import org.jetbrains.annotations.Nullable;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.xml.bind.Element;
-import java.sql.Time;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -28,8 +24,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
  * Created by anatoly on 23.05.17.
  */
 
-public class PostSort {
-
+@RunWith(JUnit4.class)
+public class PostSort extends TestCase  {
     public static WebDriver dr;
     public static WebDriverWait wdw;
     private String mainLink;
@@ -40,6 +36,7 @@ public class PostSort {
         wdw = new WebDriverWait(dr, 10); // драйвер ожидания
     }
 
+    @Test
     @Given("^loggined user and at page inbox: (.*)$")
     public void loggined_user_and_at_page_inbox(List<String> arg1) throws Throwable {
         // открытие страницы google.ru
@@ -69,6 +66,7 @@ public class PostSort {
         mainLink = arg1.get(2);
     }
 
+    @Test
     @When("^sorted by date desc$")
     public void sorted_by_date_desc() throws Throwable {
         // ожидание загрузки окна ввода
@@ -171,6 +169,7 @@ public class PostSort {
         js.executeScript("window.scrollTo(0," + (webElement.getLocation().y - 100) + ")");
     }
 
+    @Test
     @Then("^check is sorted$")
     public void check_is_sorted() throws Throwable {
         JavascriptExecutor js = ((JavascriptExecutor) dr); // для прокрутки

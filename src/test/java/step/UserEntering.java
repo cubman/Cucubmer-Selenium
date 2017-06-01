@@ -1,33 +1,25 @@
 package step;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.TestCase;
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.net.UrlChecker;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
-
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertNull;
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
 
 /**
  * Created by anatoly on 22.05.17.
  */
-public class UserEntering {
+@RunWith(JUnit4.class)
+public class UserEntering extends TestCase {
     public static WebDriver dr;
     public static WebDriverWait wdw;
 
@@ -36,6 +28,8 @@ public class UserEntering {
         dr = new ChromeDriver();
         wdw = new WebDriverWait(dr, 8);
     }
+
+    @Test
     @Given("^open browser at page google\\.ru$")
     public void open_browser_at_page_google_ru() throws Throwable {
         // открытие страницы google.ru
@@ -44,6 +38,7 @@ public class UserEntering {
         wdw.until(ExpectedConditions.elementToBeClickable(By.id("gb_70"))).click();
     }
 
+    @Test
     @When("^push buttom login enter \"([^\"]*)\"$")
     public void push_buttom_login_enter(String arg1) throws Throwable {
 
@@ -54,6 +49,7 @@ public class UserEntering {
 
     }
 
+    @Test
     @When("^enter \"([^\"]*)\"$")
     public void enter(String arg1) throws Throwable {
 
@@ -63,6 +59,7 @@ public class UserEntering {
         wdw.until(ExpectedConditions.elementToBeClickable(By.id("passwordNext"))).click();
     }
 
+    @Test
     @Then("^enter google \"([^\"]*)\"$")
     public void enter_google(String arg1) throws Throwable {
         try {

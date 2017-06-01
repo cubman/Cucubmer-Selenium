@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testsuite failures="0" name="cucumber.runtime.formatter.JUnitFormatter" skipped="0" tests="1" time="21.37363">
-<testcase classname="Post GMail sort" name="post GMail sorting" time="21.37363">
-<system-out><![CDATA[Given loggined user and at page GMail: ananabramov,p5vsp8gvA................passed
-When GMail sorted by date...................................................passed
-Then check is sorted GMail..................................................passed
-]]></system-out>
-</testcase>
-</testsuite>

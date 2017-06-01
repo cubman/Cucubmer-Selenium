@@ -3,19 +3,14 @@ package step;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import javax.xml.bind.Element;
-import java.awt.*;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated;
 
@@ -23,8 +18,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
  * Created by anatoly on 23.05.17.
  */
 
-
-public class MessageSending {
+@RunWith(JUnit4.class)
+public class MessageSending extends TestCase {
     public static WebDriver dr;
     public static WebDriverWait wdw;
 
@@ -35,6 +30,7 @@ public class MessageSending {
 
     }
 
+    @Test
     @Given("^open browser at page gmail$")
     public void open_browser_at_page_gmail() throws Throwable {
         // открытие страницы google.ru
@@ -59,12 +55,14 @@ public class MessageSending {
         dr.navigate().to("https://mail.google.com/");
     }
 
+    @Test
     @When("^push buttom write and keyboard$")
     public void push_buttom_write_and_keyboard() throws Throwable {
         wdw.until(presenceOfElementLocated(By.className("aic"))).click(); // нажать "Написать"
         wdw.until(presenceOfElementLocated(By.className("AD"))); // дождаться кнопки с клавиатурой
     }
 
+    @Test
     @Then("^enter user \"([^\"]*)\"$")
     public void enter_user(String arg1) throws Throwable {
         WebElement el = dr.findElement(By.name("to")); // активировать поле с вводом имени
@@ -72,6 +70,7 @@ public class MessageSending {
         el.sendKeys(arg1); // переслать имя
     }
 
+    @Test
     @Then("^enter message subject \"([^\"]*)\"$")
     public void enter_message_subject(String arg1) throws Throwable {
         wdw.until(presenceOfElementLocated(By.id("itamenu"))).
@@ -91,6 +90,7 @@ public class MessageSending {
         el.sendKeys(res_str);
     }
 
+    @Test
     @Then("^enter message text \"([^\"]*)\"$")
     public void enter_message_text(String arg1) throws Throwable {
         dr.findElement(By.cssSelector(".RK-QJ-Jk-Pl, .RK-Qq-Mq")).click(); // закрыть клавиатуру
@@ -105,6 +105,7 @@ public class MessageSending {
         el.sendKeys(arg1); // ввести текст
     }
 
+    @Test
     @Then("^closed window$")
     public void closed_window() throws Throwable {
        // нажать кнопку отправить

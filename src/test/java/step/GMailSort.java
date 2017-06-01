@@ -3,12 +3,15 @@ package step;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,7 +29,8 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElemen
  * Created by anatoly on 29.05.17.
  */
 
-public class GMailSort {
+@RunWith(JUnit4.class)
+public class GMailSort extends TestCase {
 
     public static WebDriver dr;
     public static WebDriverWait wdw;
@@ -36,6 +40,8 @@ public class GMailSort {
         dr = new ChromeDriver(); // драйвер браузера
         wdw = new WebDriverWait(dr, 13); // драйвер ожидания
     }
+
+    @Test
     @Given("^loggined user and at page GMail: (.*)$")
     public void loggined_user_and_at_page_GMail_ananabramov_p_vsp_gv(List<String> arg1) throws Throwable {
         // открытие страницы google.ru
@@ -60,26 +66,33 @@ public class GMailSort {
         dr.navigate().to("https://mail.google.com/");
     }
 
+    @Test
     @When("^GMail sorted by date$")
     public void gmail_sorted_by_date() throws Throwable {
+        // ожидание инструмента поиска(кнопка и поисковая строка)
         wdw.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gb_R, .gb_tf")));
-        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gstl_50, .gstt"))).click();
+        wdw.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".gstl_50, .gstt"))).click(); // нажатие на поиск
+        //вставка в поисковую строку письма за переиод от 1970 до настоящего дня
         dr.findElement(By.className("gbqfif")).sendKeys(String.format("date-begin:%s date-end:%s",
                 new SimpleDateFormat("yyyy/MM/dd").format(new Date(0)),
                 new SimpleDateFormat("yyyy/MM/dd").format(Calendar.getInstance().getTime())));
 
-        dr.findElement(By.className("gbqfb")).click();
+        dr.findElement(By.className("gbqfb")).click();// нажатие на поиск
     }
 
+
+    // прокрутить до объекта
     private void scrollTo(JavascriptExecutor js, WebElement webElement) {
         js.executeScript("window.scrollTo(0," + (webElement.getLocation().y - 100) + ")");
     }
 
+    // список сообщений
     private List<WebElement> getListOfPost() {
         return dr.findElement(By.className("Cp")).findElement(By.xpath("*")).findElement(By.xpath("*")).findElements(By.xpath("*")).get(1)
                 .findElements(By.xpath("*"));
     }
 
+    // дата создания сообщения
     private Date getElementDate(WebElement webElement) throws ParseException {
         return new SimpleDateFormat("dd MMM yyyy г., HH:mm", Locale.getDefault()).
                 parse(
@@ -92,37 +105,38 @@ public class GMailSort {
 
     @Then("^check is sorted GMail$")
     public void check_is_sorted_GMail() throws Throwable {
-        Date prev = Calendar.getInstance().getTime();
+        Date prev = Calendar.getInstance().getTime(); // стартовой время для предиката
         JavascriptExecutor js = ((JavascriptExecutor) dr); // для прокрутки
 
 
         //WebElement right =  dr.findElement(By.className("aeH")).findElement(By.className("Di")).
          //       findElements(By.xpath("*")).get(2).findElements(By.xpath("*")).get(1);
                 //findElements(By.xpath("*")).get(0).findElements(By.xpath("*")).get(0).findElements(By.xpath("*")).get(2);// findElements(By.cssSelector(".T-I, .J-J5-Ji, .amD, .T-I-awG, .T-I-ax7, .T-I-Js-Gs, .L3")).size();
-        WebElement right = wdw.until(ExpectedConditions.presenceOfElementLocated(By.id(":97")));
+        WebElement right = wdw.until(ExpectedConditions.presenceOfElementLocated(By.id(":97")));// переход к следующей странице сообщений
         List<WebElement> lew = getListOfPost();
 
         while (true) {
         //for (int j = 0; j < 1; ++j) {
-            for (WebElement w : lew) {
-                scrollTo(js, w);
-                Date d = getElementDate(w);
+            for (WebElement w : lew) { // для каждлого сообщения
+                scrollTo(js, w); // подвести к нему
+                Date d = getElementDate(w); // узнать дату
                 System.out.print(d.toString());
                 System.out.print("\n");
-               // if (d.getTime() > prev.getTime())
-               //     throw new Exception(d.toString() + "wrong time" + prev.toString());
+                if (d.getTime() > prev.getTime())
+                    throw new Exception(d.toString() + "wrong time" + prev.toString());
 
-                prev = d;
+                prev = d; // переоределить новый отсчет
             }
-            scrollTo(js, right);
+            scrollTo(js, right); // прокрутить к кнопке перехода
             //wdw.until(ExpectedConditions.visibilityOf(right));
             System.out.print("===================");
             System.out.print(prev.toString());
 
-            right.click();
-            if (!right.isSelected())
+            right.click(); // нажать
+            if (!right.isSelected()) // если она неактивна, то уйти
                 break;
 
+            // ожидание обновления списка сообщений
             for (int  i = 0; i < 5; ++i) {
                List<WebElement> mid_lew = getListOfPost();
                if (getElementDate(mid_lew.get(0)).getTime() != getElementDate(lew.get(0)).getTime()) {
